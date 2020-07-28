@@ -24,3 +24,34 @@ void Parser::consumeWhiteSpace() {
 		}		
 	}
 }
+
+std::string Parser::parseQuotedString() {
+	return"";
+}
+
+std::string Parser::number() {
+	return "";
+}
+
+std::string Parser::peek() {
+	return "";
+}
+
+std::string Parser::peekNext() {
+	return "";
+}
+
+std::map<std::string, JSONValue> Parser::parseObject()
+{
+	return std::map<std::string, JSONValue>();
+}
+
+JSONValue Parser::parseArray()
+{
+	return JSONValue();
+}
+
+JSONValue Parser::parseValue()
+{
+	return JSONValue();
+}
