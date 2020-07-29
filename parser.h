@@ -8,7 +8,7 @@ public:
 	bool consume(std::string token);
 	void consumeWhiteSpace();
 	std::string parseQuotedString();
-	std::string number();
+	std::string parseNumber();
 	std::string peek();
 	std::string peekNext();
 	std::map<std::string, JSONValue> parseObject();

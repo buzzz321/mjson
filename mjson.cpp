@@ -27,9 +27,30 @@ void testParseQuotedString() {
 	check(result == "hej och hopp", "hej och hopp", result);
 }
 
+void testParseNumber() {
+	{
+		Parser uat(" 123.4 ");
+
+		uat.consumeWhiteSpace();
+		auto result = uat.parseNumber();
+
+		check(result == "123.4", "123.4", result);
+	}
+
+	{
+		Parser uat("123.4");
+
+		uat.consumeWhiteSpace();
+		auto result = uat.parseNumber();
+
+		check(result == "123.4", "123.4", result);
+	}
+}
+
 int main()
 {
 
 	testParseQuotedString();
+	testParseNumber();
 	return 0;
 }

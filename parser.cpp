@@ -1,5 +1,5 @@
 #include "parser.h"
-
+#include <cctype>
 Parser::Parser(std::string data) :data(data) {}
 
 bool Parser::consume(std::string token) {
@@ -54,8 +54,27 @@ std::string Parser::parseQuotedString() {
 	return"";
 }
 
-std::string Parser::number() {
-	return "";
+std::string Parser::parseNumber() {
+	consumeWhiteSpace();
+
+	auto startpos = currPos;
+	auto endFound = false;
+
+	while (currPos < data.length()) {
+		auto ch = data[currPos];
+
+		if (ch == '.' || ch == '-') {
+			currPos++;
+			continue;
+		}
+		if (!std::isdigit(ch)) {
+			endFound = true;
+			break;
+		}
+		currPos++;
+	}
+
+	return data.substr(startpos, currPos - startpos);
 }
 
 std::string Parser::peek() {
