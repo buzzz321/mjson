@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include <iostream>
 #include "mjson.h"
+#include "parser.h"
 
 using namespace std;
 
@@ -16,10 +17,19 @@ void check(bool result, std::string expected, std::string actual) {
 	}
 }
 
+void testParseQuotedString() {
+	Parser uat(" \"hej och hopp\" ");
+
+	uat.consumeWhiteSpace();
+
+	auto result = uat.parseQuotedString();
+
+	check(result == "hej och hopp", "hej och hopp", result);
+}
+
 int main()
 {
-	check(true, "wanted", "got");
-	check(false, "wanted", "got");
-	
+
+	testParseQuotedString();
 	return 0;
 }

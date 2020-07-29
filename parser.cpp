@@ -1,17 +1,19 @@
 #include "parser.h"
 
+Parser::Parser(std::string data) :data(data) {}
+
 bool Parser::consume(std::string token) {
-	
-		if (data[currPos] == token[0]) {
-			return false;
-		}
-		currPos += 1;
 
-		if (currPos > data.length()) {
-			currPos = data.length() - 1;
-		}
+	if (data[currPos] != token[0]) {
+		return false;
+	}
+	currPos += 1;
 
-		return true;
+	if (currPos > data.length()) {
+		currPos = data.length() - 1;
+	}
+
+	return true;
 }
 
 void Parser::consumeWhiteSpace() {
@@ -21,11 +23,34 @@ void Parser::consumeWhiteSpace() {
 			ch != '\t' && ch != '\v' &&
 			ch != '\r') {
 			break;
-		}		
+		}
 	}
 }
 
 std::string Parser::parseQuotedString() {
+	consumeWhiteSpace();
+
+	if (!consume("\"")) {
+		return "";
+	}
+
+	auto startpos = currPos;
+	auto endFound = false;
+
+	while (currPos < data.length()) {
+		if (data[currPos] == '\"') {
+			endFound = true;
+			break;
+		}
+		currPos++;
+	}
+	if (endFound) {
+		if (!consume("\"")) {
+			std::cout << " Error end not found?!?" << std::endl;
+			return "";
+		}
+		return data.substr(startpos, currPos - startpos - 1);
+	}
 	return"";
 }
 

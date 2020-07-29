@@ -4,6 +4,7 @@
 
 class Parser {
 public:
+	Parser(std::string data);
 	bool consume(std::string token);
 	void consumeWhiteSpace();
 	std::string parseQuotedString();
