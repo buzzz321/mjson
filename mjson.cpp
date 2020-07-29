@@ -9,7 +9,7 @@ using namespace std;
 
 void check(bool result, std::string expected, std::string actual) {
 	if (result) {
-		std::cout << "\033[42m " << expected << "\033[m" << std::endl;
+		std::cout << "\033[42m " << "Pass" << "\033[m" << std::endl;
 	}
 	else {
 		std::cout << "Wanted: "<< expected <<" but got " << "\033[41m " << actual << "\033[m" << std::endl;
