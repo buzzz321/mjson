@@ -9,8 +9,8 @@ public:
 	void consumeWhiteSpace();
 	std::string parseQuotedString();
 	std::string parseNumber();
-	std::string peek();
-	std::string peekNext();
+	char peek();
+	char peekNext();
 	std::map<std::string, JSONValue> parseObject();
 	JSONValue parseArray();
 	JSONValue parseValue();

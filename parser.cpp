@@ -77,12 +77,14 @@ std::string Parser::parseNumber() {
 	return data.substr(startpos, currPos - startpos);
 }
 
-std::string Parser::peek() {
-	return "";
+char Parser::peek() {
+	auto retVal = data[currPos];
+	return retVal;
 }
 
-std::string Parser::peekNext() {
-	return "";
+char Parser::peekNext() {
+	auto retVal = data[(currPos + 1 < data.length()) ? currPos + 1 : currPos];
+	return retVal;
 }
 
 std::map<std::string, JSONValue> Parser::parseObject()
